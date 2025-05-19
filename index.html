@@ -12,6 +12,7 @@
     button { margin-top: 2rem; padding: 0.7rem 1.5rem; font-size: 1rem; }
     .section { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; background: #fff; padding: 1rem; border-radius: 5px; }
     .note { font-style: italic; font-size: 0.9rem; color: #555; margin-top: 0.2rem; }
+    .hide { display: none; }
   </style>
 </head>
 <body>
@@ -30,7 +31,8 @@
       <textarea name="projectAddress" rows="2"></textarea>
 
       <label>Project Type</label>
-      <select name="projectType">
+      <select name="projectType" id="projectType">
+        <option value="">Select a type</option>
         <option value="rear_extension">Rear Extension</option>
         <option value="loft_conversion">Loft Conversion</option>
         <option value="garden_room">Garden Room</option>
@@ -39,56 +41,94 @@
       </select>
     </div>
 
-    <div class="section">
-      <label>1. Site Setup (access, protection, skip, toilet)</label>
-      <textarea name="siteSetup" rows="3"></textarea>
-      <p class="note">Suggested cost: £500–£1,200</p>
+    <div class="section" id="checklist">
+      <!-- Checklist fields go here (unchanged for now, will hide dynamically) -->
+      <div class="checkItem" data-type="rear_extension loft_conversion garden_room garage_conversion general_renovation">
+        <label>1. Site Setup (access, protection, skip, toilet)</label>
+        <textarea name="siteSetup" rows="3"></textarea>
+        <p class="note">Suggested cost: £500–£1,200</p>
+      </div>
 
-      <label>2. Groundworks & Foundations (depth, trench size, concrete volume)</label>
-      <textarea name="groundworks" rows="3"></textarea>
-      <p class="note">Suggested cost: £2,500–£6,000</p>
+      <div class="checkItem" data-type="rear_extension garden_room garage_conversion">
+        <label>2. Groundworks & Foundations (depth, trench size, concrete volume)</label>
+        <textarea name="groundworks" rows="3"></textarea>
+        <p class="note">Suggested cost: £2,500–£6,000</p>
+      </div>
 
-      <label>3. Cavity Brickwork (wall size, insulation type, DPC)</label>
-      <textarea name="brickwork" rows="3"></textarea>
-      <p class="note">Suggested cost: £3,500–£6,500</p>
+      <div class="checkItem" data-type="rear_extension garage_conversion">
+        <label>3. Cavity Brickwork (wall size, insulation type, DPC)</label>
+        <textarea name="brickwork" rows="3"></textarea>
+        <p class="note">Suggested cost: £3,500–£6,500</p>
+      </div>
 
-      <label>4. Steel Beam / Knock-Through (beam size, propping, padstones)</label>
-      <textarea name="steelBeam" rows="3"></textarea>
-      <p class="note">Suggested cost: £1,800–£2,500</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion general_renovation">
+        <label>4. Steel Beam / Knock-Through (beam size, propping, padstones)</label>
+        <textarea name="steelBeam" rows="3"></textarea>
+        <p class="note">Suggested cost: £1,800–£2,500</p>
+      </div>
 
-      <label>5. Roof Structure & Covering (type, membrane, insulation)</label>
-      <textarea name="roofing" rows="3"></textarea>
-      <p class="note">Suggested cost: £3,000–£6,000</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion garden_room">
+        <label>5. Roof Structure & Covering (type, membrane, insulation)</label>
+        <textarea name="roofing" rows="3"></textarea>
+        <p class="note">Suggested cost: £3,000–£6,000</p>
+      </div>
 
-      <label>6. Rooflights & Flashing (number, style, lead work)</label>
-      <textarea name="rooflights" rows="2"></textarea>
-      <p class="note">Suggested cost: £500–£1,500</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion">
+        <label>6. Rooflights & Flashing (number, style, lead work)</label>
+        <textarea name="rooflights" rows="2"></textarea>
+        <p class="note">Suggested cost: £500–£1,500</p>
+      </div>
 
-      <label>7. Windows & External Doors (supply/install, sizes)</label>
-      <textarea name="windows" rows="2"></textarea>
-      <p class="note">Suggested cost: £800–£2,500</p>
+      <div class="checkItem" data-type="rear_extension garage_conversion general_renovation">
+        <label>7. Windows & External Doors (supply/install, sizes)</label>
+        <textarea name="windows" rows="2"></textarea>
+        <p class="note">Suggested cost: £800–£2,500</p>
+      </div>
 
-      <label>8. Rendering & Plastering (internal, external, coving)</label>
-      <textarea name="plastering" rows="3"></textarea>
-      <p class="note">Suggested cost: £1,500–£3,500</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion garage_conversion general_renovation">
+        <label>8. Rendering & Plastering (internal, external, coving)</label>
+        <textarea name="plastering" rows="3"></textarea>
+        <p class="note">Suggested cost: £1,500–£3,500</p>
+      </div>
 
-      <label>9. Electrics & Plumbing (layout, reroutes, new fittings)</label>
-      <textarea name="services" rows="3"></textarea>
-      <p class="note">Suggested cost: £1,500–£4,000</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion garage_conversion garden_room general_renovation">
+        <label>9. Electrics & Plumbing (layout, reroutes, new fittings)</label>
+        <textarea name="services" rows="3"></textarea>
+        <p class="note">Suggested cost: £1,500–£4,000</p>
+      </div>
 
-      <label>10. Waste & Final Clean (skips, labour, rubble volume)</label>
-      <textarea name="waste" rows="2"></textarea>
-      <p class="note">Suggested cost: £700–£1,500</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion garden_room garage_conversion general_renovation">
+        <label>10. Waste & Final Clean (skips, labour, rubble volume)</label>
+        <textarea name="waste" rows="2"></textarea>
+        <p class="note">Suggested cost: £700–£1,500</p>
+      </div>
 
-      <label>11. Optional Add-ons or Notes (e.g. decking, landscaping, external render)</label>
-      <textarea name="notes" rows="3"></textarea>
-      <p class="note">Optional – cost depends on scope</p>
+      <div class="checkItem" data-type="rear_extension loft_conversion garden_room garage_conversion general_renovation">
+        <label>11. Optional Add-ons or Notes (e.g. decking, landscaping, external render)</label>
+        <textarea name="notes" rows="3"></textarea>
+        <p class="note">Optional – cost depends on scope</p>
+      </div>
     </div>
 
     <button type="submit">Save Project as PDF</button>
   </form>
 
   <script>
+    const projectTypeSelect = document.getElementById('projectType');
+    const checkItems = document.querySelectorAll('.checkItem');
+
+    projectTypeSelect.addEventListener('change', function () {
+      const selected = this.value;
+      checkItems.forEach(el => {
+        const types = el.getAttribute('data-type');
+        if (types.includes(selected)) {
+          el.classList.remove('hide');
+        } else {
+          el.classList.add('hide');
+        }
+      });
+    });
+
     document.getElementById('quoteForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
