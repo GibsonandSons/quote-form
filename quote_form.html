@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Construction Quote Estimator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.6; }
+    h1 { font-size: 1.8rem; margin-bottom: 1rem; }
+    label { display: block; margin-top: 1rem; font-weight: bold; }
+    input, textarea, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; }
+    button { margin-top: 2rem; padding: 0.7rem 1.5rem; font-size: 1rem; }
+    .section { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>Construction Quote Estimator</h1>
+
+  <form id="quoteForm">
+    <div class="section">
+      <label>Client Name</label>
+      <input type="text" name="clientName" required>
+
+      <label>Project Address</label>
+      <textarea name="projectAddress" rows="2"></textarea>
+
+      <label>Project Type</label>
+      <select name="projectType">
+        <option value="rear_extension">Rear Extension</option>
+        <option value="loft_conversion">Loft Conversion</option>
+        <option value="garden_room">Garden Room</option>
+        <option value="garage_conversion">Garage Conversion</option>
+        <option value="general_renovation">General Renovation</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label>Site Setup (e.g. protection, skip, welfare)</label>
+      <input type="text" name="siteSetup">
+
+      <label>Groundworks & Foundations</label>
+      <input type="text" name="groundworks">
+
+      <label>Substructure / Floor System</label>
+      <input type="text" name="substructure">
+
+      <label>Structural Walls / Cavity Brickwork</label>
+      <input type="text" name="brickwork">
+
+      <label>Steel Beam / Knock-Through</label>
+      <input type="text" name="steelBeam">
+
+      <label>Roofing (type + finish)</label>
+      <input type="text" name="roofing">
+
+      <label>Rooflights / Flashing</label>
+      <input type="text" name="rooflights">
+
+      <label>Windows & External Doors</label>
+      <input type="text" name="windows">
+
+      <label>Internal Plastering & Rendering</label>
+      <input type="text" name="plastering">
+
+      <label>Electrics & Plumbing (if applicable)</label>
+      <input type="text" name="services">
+
+      <label>Waste & Final Clean</label>
+      <input type="text" name="waste">
+
+      <label>Other Notes or Client Requests</label>
+      <textarea name="notes" rows="3"></textarea>
+    </div>
+
+    <button type="submit">Generate Estimate</button>
+  </form>
+
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('This form is for estimation purposes only. A detailed quote will be provided upon review.');
+    });
+  </script>
+</body>
+</html>
