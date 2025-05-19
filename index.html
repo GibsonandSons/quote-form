@@ -39,50 +39,71 @@
     </div>
 
     <div class="section">
-      <label>Site Setup (describe protection needed, access issues, skip/toilet needs)</label>
+      <label>1. Site Setup (describe protection needed, access issues, skip/toilet needs)</label>
       <textarea name="siteSetup" rows="3"></textarea>
 
-      <label>Groundworks & Foundations (depth, trench size, concrete volume)</label>
+      <label>2. Groundworks & Foundations (depth, trench size, concrete volume)</label>
       <textarea name="groundworks" rows="3"></textarea>
 
-      <label>Substructure / Floor System (block & beam, slab type, insulation)</label>
+      <label>3. Substructure / Floor System (block & beam, slab type, insulation)</label>
       <textarea name="substructure" rows="3"></textarea>
 
-      <label>Cavity Brickwork (block size, insulation type, DPC details)</label>
+      <label>4. Cavity Brickwork (block size, insulation type, DPC details)</label>
       <textarea name="brickwork" rows="3"></textarea>
 
-      <label>Steel Beam / Knock-Through (RSJ size, padstones, propping method)</label>
+      <label>5. Steel Beam / Knock-Through (RSJ size, padstones, propping method)</label>
       <textarea name="steelBeam" rows="3"></textarea>
 
-      <label>Roofing (type, pitch, finish, insulation, Siltec/membrane if used)</label>
+      <label>6. Roofing (type, pitch, finish, insulation, Siltec/membrane if used)</label>
       <textarea name="roofing" rows="3"></textarea>
 
-      <label>Rooflights / Flashing (how many, size, lead/flashing type)</label>
+      <label>7. Rooflights / Flashing (how many, size, lead/flashing type)</label>
       <textarea name="rooflights" rows="2"></textarea>
 
-      <label>Windows & External Doors (supply or client-supplied? sizes?)</label>
+      <label>8. Windows & External Doors (supply or client-supplied? sizes?)</label>
       <textarea name="windows" rows="2"></textarea>
 
-      <label>Rendering & Plastering (internal/external areas, silicone or sand/cement)</label>
+      <label>9. Rendering & Plastering (internal/external areas, silicone or sand/cement)</label>
       <textarea name="plastering" rows="3"></textarea>
 
-      <label>Electrics & Plumbing (client electrician or in-house? any rerouting?)</label>
+      <label>10. Electrics & Plumbing (client electrician or in-house? any rerouting?)</label>
       <textarea name="services" rows="3"></textarea>
 
-      <label>Waste & Final Clean (number of skips needed, rubble volume)</label>
+      <label>11. Waste & Final Clean (number of skips needed, rubble volume)</label>
       <textarea name="waste" rows="2"></textarea>
 
-      <label>Other Notes (client preferences, site risks, extra works)</label>
+      <label>12. Other Notes (client preferences, site risks, extra works)</label>
       <textarea name="notes" rows="3"></textarea>
     </div>
 
-    <button type="submit">Send Job Details</button>
+    <button type="submit">Download PDF</button>
   </form>
 
   <script>
     document.getElementById('quoteForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Checklist completed. Now ready to be sent or saved. (Email submission not yet connected.)');
+
+      const form = e.target;
+      const data = new FormData(form);
+      let content = 'Internal Job Checklist – Gibson and Sons\n\n';
+
+      for (const [key, value] of data.entries()) {
+        const label = form.querySelector(`[name="${key}"]`).previousElementSibling.innerText;
+        content += `${label}:\n${value}\n\n`;
+      }
+
+      const client = data.get('clientName') || 'Client';
+      const address = data.get('projectAddress')?.split('\n')[0] || 'Project';
+      const filename = `${client.trim().replace(/\s+/g, '_')}_${address.trim().replace(/\s+/g, '_')}.pdf`;
+
+      const blob = new Blob([content], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     });
   </script>
 </body>
