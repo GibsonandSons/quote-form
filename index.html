@@ -94,7 +94,8 @@
 
       const client = data.get('clientName') || 'Client';
       const address = data.get('projectAddress')?.split('\n')[0] || 'Project';
-      const filename = `${client.trim().replace(/\s+/g, '_')}_${address.trim().replace(/\s+/g, '_')}.pdf`;
+      const date = new Date().toISOString().split('T')[0];
+      const filename = `${client.trim().replace(/\s+/g, '_')}_${address.trim().replace(/\s+/g, '_')}_${date}.pdf`;
 
       const blob = new Blob([content], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
@@ -104,6 +105,8 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+
+      alert('PDF downloaded successfully!');
     });
   </script>
 </body>
