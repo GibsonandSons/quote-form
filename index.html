@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Construction Quote Estimator</title>
+  <title>Internal Job Checklist – Gibson and Sons</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.6; }
+    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.6; background: #f9f9f9; }
     h1 { font-size: 1.8rem; margin-bottom: 1rem; }
     label { display: block; margin-top: 1rem; font-weight: bold; }
     input, textarea, select { width: 100%; padding: 0.5rem; margin-top: 0.3rem; }
     button { margin-top: 2rem; padding: 0.7rem 1.5rem; font-size: 1rem; }
-    .section { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; }
+    .section { margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; background: #fff; padding: 1rem; border-radius: 5px; }
   </style>
 </head>
 <body>
-  <h1>Construction Quote Estimator</h1>
+  <h1>Internal Job Checklist – Gibson and Sons</h1>
+  <p><strong>For Lewis to complete before sending project details for quotation. Include as much information as possible.</strong></p>
 
   <form id="quoteForm">
     <div class="section">
       <label>Client Name</label>
       <input type="text" name="clientName" required>
+
+      <label>Client Contact Info (phone/email)</label>
+      <input type="text" name="clientContact">
 
       <label>Project Address</label>
       <textarea name="projectAddress" rows="2"></textarea>
@@ -35,50 +39,50 @@
     </div>
 
     <div class="section">
-      <label>Site Setup (e.g. protection, skip, welfare)</label>
-      <input type="text" name="siteSetup">
+      <label>Site Setup (describe protection needed, access issues, skip/toilet needs)</label>
+      <textarea name="siteSetup" rows="3"></textarea>
 
-      <label>Groundworks & Foundations</label>
-      <input type="text" name="groundworks">
+      <label>Groundworks & Foundations (depth, trench size, concrete volume)</label>
+      <textarea name="groundworks" rows="3"></textarea>
 
-      <label>Substructure / Floor System</label>
-      <input type="text" name="substructure">
+      <label>Substructure / Floor System (block & beam, slab type, insulation)</label>
+      <textarea name="substructure" rows="3"></textarea>
 
-      <label>Structural Walls / Cavity Brickwork</label>
-      <input type="text" name="brickwork">
+      <label>Cavity Brickwork (block size, insulation type, DPC details)</label>
+      <textarea name="brickwork" rows="3"></textarea>
 
-      <label>Steel Beam / Knock-Through</label>
-      <input type="text" name="steelBeam">
+      <label>Steel Beam / Knock-Through (RSJ size, padstones, propping method)</label>
+      <textarea name="steelBeam" rows="3"></textarea>
 
-      <label>Roofing (type + finish)</label>
-      <input type="text" name="roofing">
+      <label>Roofing (type, pitch, finish, insulation, Siltec/membrane if used)</label>
+      <textarea name="roofing" rows="3"></textarea>
 
-      <label>Rooflights / Flashing</label>
-      <input type="text" name="rooflights">
+      <label>Rooflights / Flashing (how many, size, lead/flashing type)</label>
+      <textarea name="rooflights" rows="2"></textarea>
 
-      <label>Windows & External Doors</label>
-      <input type="text" name="windows">
+      <label>Windows & External Doors (supply or client-supplied? sizes?)</label>
+      <textarea name="windows" rows="2"></textarea>
 
-      <label>Internal Plastering & Rendering</label>
-      <input type="text" name="plastering">
+      <label>Rendering & Plastering (internal/external areas, silicone or sand/cement)</label>
+      <textarea name="plastering" rows="3"></textarea>
 
-      <label>Electrics & Plumbing (if applicable)</label>
-      <input type="text" name="services">
+      <label>Electrics & Plumbing (client electrician or in-house? any rerouting?)</label>
+      <textarea name="services" rows="3"></textarea>
 
-      <label>Waste & Final Clean</label>
-      <input type="text" name="waste">
+      <label>Waste & Final Clean (number of skips needed, rubble volume)</label>
+      <textarea name="waste" rows="2"></textarea>
 
-      <label>Other Notes or Client Requests</label>
+      <label>Other Notes (client preferences, site risks, extra works)</label>
       <textarea name="notes" rows="3"></textarea>
     </div>
 
-    <button type="submit">Generate Estimate</button>
+    <button type="submit">Send Job Details</button>
   </form>
 
   <script>
     document.getElementById('quoteForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('This form is for estimation purposes only. A detailed quote will be provided upon review.');
+      alert('Checklist completed. Now ready to be sent or saved. (Email submission not yet connected.)');
     });
   </script>
 </body>
